@@ -15,7 +15,7 @@ namespace FacileBudget
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder
-                    .UseUrls("http://*:8080")
+                    .UseUrls("http://localhost:8080")
                     .UseKestrel()
                     .UseStartup<Startup>();
                 });
