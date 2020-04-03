@@ -6,7 +6,7 @@ namespace FacileBudget.Controllers
     {
         public IActionResult Index()
         {
-            ViewData["Title"] = "Benvenuto su FacileBudget !";
+            ViewData["Title"] = "Facile Budget";
             return View();
         }
     }
