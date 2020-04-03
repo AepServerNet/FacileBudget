@@ -26,7 +26,6 @@ namespace FacileBudget
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //if (env.IsDevelopment())
             if (env.IsEnvironment("Development"))
             {
                 app.UseDeveloperExceptionPage();
@@ -43,14 +42,6 @@ namespace FacileBudget
             app.UseEndpoints(routeBuilder => {
                 routeBuilder.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });
-
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapGet("/", async context =>
-            //    {
-            //        await context.Response.WriteAsync("Hello World!");
-            //    });
-            //});
         }
     }
 }

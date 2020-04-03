@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using Serilog;
 
 namespace FacileBudget
 {
@@ -17,7 +18,11 @@ namespace FacileBudget
                     webBuilder
                     .UseUrls("http://localhost:8080")
                     .UseKestrel()
-                    .UseStartup<Startup>();
+                    .UseStartup<Startup>()
+                    .UseSerilog((webHostBuilderContext, loggerConfiguration) => 
+                    {
+                        loggerConfiguration.ReadFrom.Configuration(webHostBuilderContext.Configuration);
+                    });
                 });
     }
 }
