@@ -16,13 +16,15 @@ namespace FacileBudget
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder
-                    .UseUrls("http://localhost:8080")
-                    .UseKestrel()
-                    .UseStartup<Startup>()
-                    .UseSerilog((webHostBuilderContext, loggerConfiguration) => 
-                    {
-                        loggerConfiguration.ReadFrom.Configuration(webHostBuilderContext.Configuration);
-                    });
+                        // Usare solo per il debug, lasciare commentato per il deploy su IIS
+                        //.UseUrls("http://localhost:81")
+                        //.UseKestrel()
+                        // Per eseguire il deploy lanciare il comando: dotnet publish --configuration Release
+                        .UseStartup<Startup>()
+                        .UseSerilog((webHostBuilderContext, loggerConfiguration) => 
+                        {
+                            loggerConfiguration.ReadFrom.Configuration(webHostBuilderContext.Configuration);
+                        });
                 });
     }
 }
