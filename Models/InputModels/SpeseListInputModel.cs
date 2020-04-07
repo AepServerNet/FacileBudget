@@ -1,8 +1,6 @@
 using System;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using FacileBudget.Customizations.ModelBinders;
-using FacileBudget.Models.Options;
 
 namespace FacileBudget.Models.InputModels
 {

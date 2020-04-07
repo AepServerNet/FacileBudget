@@ -1,6 +1,5 @@
 using System;
 using System.Data;
-using FacileBudget.Models.ValueTypes;
 
 namespace FacileBudget.Models.ViewModels
 {

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using FacileBudget.Models.InputModels;
 
 namespace FacileBudget.Models.ViewModels

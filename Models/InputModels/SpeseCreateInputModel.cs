@@ -1,6 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Mvc;
-using FacileBudget.Controllers;
 
 namespace FacileBudget.Models.InputModels
 {

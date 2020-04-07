@@ -1,5 +1,3 @@
-using System;
-
 namespace FacileBudget.Models.ValueTypes
 {
     public class Sql 

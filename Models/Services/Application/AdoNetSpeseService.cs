@@ -2,13 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
-using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using FacileBudget.Models.InputModels;
 using FacileBudget.Models.Options;
 using FacileBudget.Models.Services.Infrastructure;
-using FacileBudget.Models.ValueTypes;
 using FacileBudget.Models.ViewModels;
 
 namespace FacileBudget.Models.Services.Application
