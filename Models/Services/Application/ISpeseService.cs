@@ -7,5 +7,6 @@ namespace FacileBudget.Models.Services.Application
     public interface ISpeseService
     {
         Task<ListViewModel<SpeseViewModel>> GetSpeseAsync(SpeseListInputModel model);
+        Task<bool> CreateSpesaAsync(SpeseCreateInputModel inputModel);
     }
 }

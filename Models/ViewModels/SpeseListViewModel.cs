@@ -5,7 +5,7 @@ namespace FacileBudget.Models.ViewModels
 {
     public class SpeseListViewModel
     {
-        public ListViewModel<SpeseViewModel> Esperienze { get; set; }
+        public ListViewModel<SpeseViewModel> Spese { get; set; }
         public SpeseListInputModel Input { get; set; }
     }
 }

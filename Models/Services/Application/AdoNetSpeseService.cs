@@ -26,8 +26,11 @@ namespace FacileBudget.Models.Services.Application
         }
         public async Task<ListViewModel<SpeseViewModel>> GetSpeseAsync(SpeseListInputModel model)
         {
-            FormattableString query = $@"SELECT Id, ... FROM tabella ORDER BY Id DESC LIMIT {model.Limit} OFFSET {model.Offset}; 
-            SELECT COUNT(*) FROM tabella";
+            string mese = DateTime.Now.ToString("MM");
+            string anno = DateTime.Now.ToString("yyyy");
+
+            FormattableString query = $@"SELECT IdSpesa, Descrizione, Importo, Valuta FROM Spese WHERE Mese LIKE {mese} AND Anno LIKE {anno} ORDER BY IdSpesa DESC LIMIT {model.Limit} OFFSET {model.Offset}; 
+            SELECT COUNT(*) FROM Spese WHERE Mese LIKE {mese} AND Anno LIKE {anno}";
             DataSet dataSet = await db.QueryAsync(query);
             var dataTable = dataSet.Tables[0];
             var speseList = new List<SpeseViewModel>();
@@ -44,6 +47,16 @@ namespace FacileBudget.Models.Services.Application
             };
 
             return result;
+        }
+        public async Task<bool> CreateSpesaAsync(SpeseCreateInputModel inputModel)
+        {
+            string mese = DateTime.Now.ToString("MM");
+            string anno = DateTime.Now.ToString("yyyy");
+            string valuta = "EUR";
+
+            DataSet dataSet = await db.QueryAsync($@"INSERT INTO Spese (Descrizione, Importo, Valuta, Mese, Anno) VALUES ({inputModel.Descrizione}, {inputModel.Importo}, {valuta}, {mese}, {anno});");
+            
+            return true;
         }
     }
 }
