@@ -8,19 +8,19 @@ namespace FacileBudget.Models.ViewModels
     {
         public int IdSpesa { get; set; }
         public string Descrizione { get; set; }
-        public int Importo { get; set; }
+        public string Importo { get; set; }
         public string Valuta { get; set; }
-        public int Mese { get; set; }
-        public int Anno { get; set; }
+        public string Mese { get; set; }
+        public string Anno { get; set; }
 
         public static SpeseViewModel FromDataRow(DataRow Row)
         {
             var speseViewModel = new SpeseViewModel {
                 Descrizione = Convert.ToString(Row["Descrizione"]),
-                Importo = Convert.ToInt32(Row["Importo"]),
+                Importo = Convert.ToString(Row["Importo"]),
                 Valuta = Convert.ToString(Row["Valuta"]),
-                Mese = Convert.ToInt32(Row["Mese"]),
-                Anno = Convert.ToInt32(Row["Anno"]),
+                Mese = Convert.ToString(Row["Mese"]),
+                Anno = Convert.ToString(Row["Anno"]),
                 IdSpesa = Convert.ToInt32(Row["IdSpesa"])
             };
             return speseViewModel;

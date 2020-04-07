@@ -1,8 +1,10 @@
+using System.Globalization;
 using FacileBudget.Models.Options;
 using FacileBudget.Models.Services.Application;
 using FacileBudget.Models.Services.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Configuration;

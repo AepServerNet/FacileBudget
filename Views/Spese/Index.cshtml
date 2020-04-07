@@ -1,17 +1,19 @@
 @model SpeseListViewModel
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md">
         <h1>@ViewData["Title"] <a class="btn btn-outline-primary btn-sm" asp-action="Create"><i class="fa fa-plus"></i> Crea nuova spesa</a></h1>
     </div>
-    <div class="col-md-4">
-
-    </div>
 </div>
-
+<p>&nbsp;</p>
+<div class="row">
+    <div class="col-md"><h3>Periodo: @DateTime.Now.ToString("MMMM").ToUpper() @DateTime.Now.ToString("yyyy") 
+    - Totale: @Html.Raw(@Model.Spese.TotaleSpese.ToString()) &euro;</h3></div>
+</div>
+<p>&nbsp;</p>
 <div class="row">
     <div class="col-md-3"></div>
-    <div class="col-md-4">Descrizione</div>
-    <div class="col-md-2">Importo</div>
+    <div class="col-md-3">Descrizione</div>
+    <div class="col-md-3">Importo</div>
     <div class="col-md-3"></div>
 </div>
 
@@ -20,12 +22,11 @@
 <hr>
 <div class="row">
     <div class="col-md-3">&nbsp;</div>
-    <div class="col-md-3">
-        <h6>@Html.Raw(@spese.Descrizione.ToString())</h6>
-    </div>
-    <div class="col-md-3">
-        <h6>@Html.Raw(@spese.Importo.ToString()) @Html.Raw(@spese.Valuta.ToString())</h6>
-    </div>
+    <div class="col-md-3"><h6>@Html.Raw(@spese.Descrizione.ToString())</h6></div>
+    @if(spese.Valuta.ToString() == "EUR")
+    {
+        <div class="col-md-3"><h6>&euro; @Html.Raw(@spese.Importo.ToString())</h6></div>
+    }
     <div class="col-md-3">&nbsp;</div>
 </div>
 }

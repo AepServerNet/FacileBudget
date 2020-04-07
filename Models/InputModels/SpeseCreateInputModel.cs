@@ -10,6 +10,6 @@ namespace FacileBudget.Models.InputModels
         public string Descrizione { get; set; }
 
         [Required(ErrorMessage = "L'importo è obbligatorio")]
-        public int Importo { get; set; }
+        public string Importo { get; set; }
     }
 }

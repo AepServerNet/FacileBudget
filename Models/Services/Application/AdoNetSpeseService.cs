@@ -29,8 +29,9 @@ namespace FacileBudget.Models.Services.Application
             string mese = DateTime.Now.ToString("MM");
             string anno = DateTime.Now.ToString("yyyy");
 
-            FormattableString query = $@"SELECT IdSpesa, Descrizione, Importo, Valuta FROM Spese WHERE Mese LIKE {mese} AND Anno LIKE {anno} ORDER BY IdSpesa DESC LIMIT {model.Limit} OFFSET {model.Offset}; 
-            SELECT COUNT(*) FROM Spese WHERE Mese LIKE {mese} AND Anno LIKE {anno}";
+            FormattableString query = $@"SELECT IdSpesa, Descrizione, Importo, Valuta, Mese, Anno FROM Spese WHERE Mese LIKE {mese} AND Anno LIKE {anno} ORDER BY IdSpesa DESC LIMIT {model.Limit} OFFSET {model.Offset}; 
+            SELECT COUNT(*) FROM Spese WHERE Mese LIKE {mese} AND Anno LIKE {anno};
+            SELECT SUM(Importo) FROM Spese WHERE Mese LIKE {mese} AND Anno LIKE {anno};";
             DataSet dataSet = await db.QueryAsync(query);
             var dataTable = dataSet.Tables[0];
             var speseList = new List<SpeseViewModel>();
@@ -43,7 +44,8 @@ namespace FacileBudget.Models.Services.Application
             ListViewModel<SpeseViewModel> result = new ListViewModel<SpeseViewModel>
             {
                 Results = speseList,
-                TotalCount = Convert.ToInt32(dataSet.Tables[1].Rows[0][0])
+                TotalCount = Convert.ToInt32(dataSet.Tables[1].Rows[0][0]),
+                TotaleSpese = Convert.ToString(dataSet.Tables[2].Rows[0][0])
             };
 
             return result;
