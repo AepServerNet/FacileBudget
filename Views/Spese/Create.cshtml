@@ -4,11 +4,9 @@
     <div class="row">
         <div class="col-12">
         <p>&nbsp;</p>
-            <!--
-            Questa view dimostra l'uso sia dell'asp-validation-summary che dell'asp-validation-for
-            Perciò gli errori di validazione verranno visualizzati due volte
-            
-            <div asp-validation-summary="All"></div>-->
+            <!-- Questa view dimostra l'uso sia dell'asp-validation-summary che dell'asp-validation-for
+            Perciò gli errori di validazione verranno visualizzati due volte -->
+            <div asp-validation-summary="All"></div>
         </div>
     </div>
     <div class="row">
@@ -19,20 +17,19 @@
     <div class="row">
         <div class="col-md-5 mb-3">
             <input type="text" asp-for="Descrizione" class="form-control form-control-lg" placeholder="Digita la descrizione della spesa">
-            <span asp-validation-for="Descrizione"></span>
+            <!-- <span asp-validation-for="Descrizione"></span>-->
         </div>
         <div class="col-md-3">
             <input type="text" asp-for="Importo" class="form-control form-control-lg" placeholder="Digita l'importo">
-            <span asp-validation-for="Importo"></span>
+            <!-- <span asp-validation-for="Importo"></span>-->
         </div>
         <div class="col-md-4">
             <button type="submit" class="btn btn-primary btn-lg btn-block"><i class="fas fa-rocket"></i> Crea spesa!</button>
         </div>
     </div>
     <div class="col-12"><p>&nbsp;</p></div>
-    <div class="col-12">
-        <span>ATTENZIONE: </span> L'importo va inserito usando il punto (.) come separatore di decimali
-    </div>
+    <div class="col-12"><span><b>ATTENZIONE:</b></span> 
+    L'importo va inserito usando il punto (.) come separatore di decimali</div>
 </form>
 @section Scripts
 {

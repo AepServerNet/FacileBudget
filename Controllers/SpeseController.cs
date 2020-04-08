@@ -1,3 +1,7 @@
+using System;
+using System.Text;
+using System.Data;
+using System.Globalization;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using FacileBudget.Models.InputModels;
@@ -46,9 +50,35 @@ namespace FacileBudget.Controllers
                         return RedirectToAction("Index", "Spese");
                     }
             }
-
             ViewData["Title"] = "Nuova spesa";
             return View(inputModel);
+        }
+
+        [HttpPost]
+        public async Task<FileResult> ExportDatiMese(string mese, string anno)
+        {
+            DataSet dsSpese = await spesaService.ExportCsvMese(mese, anno);
+            StringBuilder sb = new StringBuilder();
+
+            string SelMese = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(Convert.ToInt32(mese)).ToString();
+            string FileName = "Report_spese_"+ SelMese + ".csv";
+
+            if(dsSpese.Tables[0].Rows.Count == 0)
+            {
+                string periodo = "" + SelMese + " " + anno + "";
+                string error = "Non ci sono spese da esportare in " + periodo + ".";
+
+                sb.Append(error);
+                return File(Encoding.UTF8.GetBytes(sb.ToString()), "text/plain", "Spese.txt");
+            }
+
+            sb.AppendLine("Descrizione" + ";" + "Importo");
+
+            foreach (DataRow dr in dsSpese.Tables[0].Rows)
+            {
+                sb.AppendLine(dr["Descrizione"].ToString() + ";" + dr["Importo"].ToString());
+            }
+            return File(Encoding.UTF8.GetBytes(sb.ToString()), "text/csv", FileName);
         }
     }
 }
