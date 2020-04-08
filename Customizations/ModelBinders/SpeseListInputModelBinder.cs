@@ -15,17 +15,13 @@ namespace FacileBudget.Customizations.ModelBinders
         }
         public Task BindModelAsync(ModelBindingContext bindingContext)
         {
-            //Recuperiamo i valori grazie ai value provider
             int.TryParse(bindingContext.ValueProvider.GetValue("Page").FirstValue, out int page);
 
-            //Creiamo l'istanza del CourseListInputModel
             SpeseOptions options = speseOptions.CurrentValue;
             var inputModel = new SpeseListInputModel(page, options.PerPage);
 
-            //Impostiamo il risultato per notificare che la creazione è avvenuta con successo
             bindingContext.Result = ModelBindingResult.Success(inputModel);
 
-            //Restituiamo un task completato
             return Task.CompletedTask;
         }
     }
