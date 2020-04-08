@@ -1,6 +1,8 @@
 using FacileBudget.Models.Options;
 using FacileBudget.Models.Services.Application;
 using FacileBudget.Models.Services.Infrastructure;
+using FacileBudget.Models.Validators;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -23,6 +25,10 @@ namespace FacileBudget
         {
             services.AddResponseCaching();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
+            .AddFluentValidation(options => {
+                options.RegisterValidatorsFromAssemblyContaining<SpeseCreateValidator>();
+            })
+
             #if DEBUG
             .AddRazorRuntimeCompilation()
             #endif
