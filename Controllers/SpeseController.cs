@@ -55,11 +55,11 @@ namespace FacileBudget.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Delete(SpeseDeleteInputModel inputModel)
+        public async Task<IActionResult> Delete(int IdSpesa)
         {
             if (ModelState.IsValid)
             {
-                bool spesa = await spesaService.DeleteSpesaAsync(inputModel);
+                bool spesa = await spesaService.DeleteSpesaAsync(IdSpesa);
                 if (spesa == true)
                 {
                     TempData["ConfirmationMessage"] = "Ok! La tua spesa è stata cancellata!";
