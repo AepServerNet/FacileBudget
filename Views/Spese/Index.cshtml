@@ -1,23 +1,23 @@
 @model SpeseListViewModel
 <div class="row">
     <div class="col-md-8">
-        <h1>@ViewData["Title"] <a class="btn btn-outline-primary btn-sm" asp-action="Create"><i class="fa fa-plus"></i> Crea nuova spesa</a></h1>
+        <h1>@ViewData["Title"] <a class="btn btn-outline-success" asp-action="Create"><i class="fa fa-plus"></i> Crea nuova spesa</a></h1>
     </div>
     <div class="col-md-4 d-flex align-items-center">
         <form asp-controller="Spese" asp-action="ExportDatiMese" method="post">
             <input type="hidden" id="mese" name="mese" value="@DateTime.Now.ToString("MM")">
             <input type="hidden" id="anno" name="anno" value="@DateTime.Now.ToString("yyyy")">
-            <button class="btn btn-outline-primary btn-sm" id="export-button">Esporta CSV (@DateTime.Now.ToString("MMMM"))</button>
+            <button class="btn btn-outline-success" id="export-button">Esporta @DateTime.Now.ToString("MMMM")</button>
         </form>&nbsp;
         <form asp-controller="Spese" asp-action="ExportDatiMese" method="post">
             <input type="hidden" id="mese" name="mese" value="@DateTime.Now.AddMonths(-1).ToString("MM")">
             <input type="hidden" id="anno" name="anno" value="@DateTime.Now.AddMonths(-1).ToString("yyyy")">
-            <button class="btn btn-outline-primary btn-sm" id="export-button">Esporta CSV (@DateTime.Now.AddMonths(-1).ToString("MMMM"))</button>
+            <button class="btn btn-outline-success" id="export-button">Esporta @DateTime.Now.AddMonths(-1).ToString("MMMM")</button>
         </form>&nbsp;
         <form asp-controller="Spese" asp-action="ExportDatiMese" method="post">
             <input type="hidden" id="mese" name="mese" value="@DateTime.Now.AddMonths(-2).ToString("MM")">
             <input type="hidden" id="anno" name="anno" value="@DateTime.Now.AddMonths(-2).ToString("yyyy")">
-            <button class="btn btn-outline-primary btn-sm" id="export-button">Esporta CSV (@DateTime.Now.AddMonths(-2).ToString("MMMM"))</button>
+            <button class="btn btn-outline-success" id="export-button">Esporta @DateTime.Now.AddMonths(-2).ToString("MMMM")</button>
         </form>
     </div>
 </div>
@@ -31,7 +31,8 @@
     <div class="col-md-3"></div>
     <div class="col-md-3">Descrizione</div>
     <div class="col-md-3">Importo</div>
-    <div class="col-md-3"></div>
+    <div class="col-md-2"></div>
+    <div class="col-md-1"></div>
 </div>
 
 @foreach(SpeseViewModel spese in Model.Spese.Results)
@@ -44,7 +45,11 @@
     {
         <div class="col-md-3"><h6>&euro; @Html.Raw(@spese.Importo.ToString())</h6></div>
     }
-    <div class="col-md-3">&nbsp;</div>
+    <form asp-controller="Spese" asp-action="Delete" method="post">
+        <input type="hidden" id="IdSpesa" name="IdSpesa" value="@spese.IdSpesa.ToString()">
+        <button class="btn btn-outline-success btn-sm" id="delete-button">Cancella</button>
+    </form>
+    <div class="col-md-1">&nbsp;</div>
 </div>
 }
 <hr>

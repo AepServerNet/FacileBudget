@@ -55,7 +55,11 @@ namespace FacileBudget.Models.Services.Application
             string valuta = "EUR";
 
             DataSet dataSet = await db.QueryAsync($@"INSERT INTO Spese (Descrizione, Importo, Valuta, Mese, Anno) VALUES ({inputModel.Descrizione}, {inputModel.Importo}, {valuta}, {mese}, {anno});");
-            
+            return true;
+        }
+        public async Task<bool> DeleteSpesaAsync(SpeseDeleteInputModel inputModel)
+        {
+            DataSet dataSet = await db.QueryAsync($@"DELETE FROM Spese WHERE IdSpesa = {inputModel.IdSpesa};");
             return true;
         }
         public async Task<DataSet> ExportCsvMese(string mese, string anno)

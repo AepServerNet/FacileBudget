@@ -10,18 +10,18 @@
     <div class="row">
         <div class="col-md-5">Descrizione</div>
         <div class="col-md-3">Importo</div>
-        <div class="col-md-4"></div>
+        <div class="col-md-2"></div>
+        <div class="col-md-2"></div>
     </div>
     <div class="row">
         <div class="col-md-5 mb-3">
-            <input type="text" asp-for="Descrizione" class="form-control form-control-lg" placeholder="Digita la descrizione della spesa">
+            <input type="text" asp-for="Descrizione" class="form-control" placeholder="Digita la descrizione della spesa">
         </div>
         <div class="col-md-3">
-            <input type="text" asp-for="Importo" class="form-control form-control-lg" placeholder="Digita l'importo">
+            <input type="text" asp-for="Importo" class="form-control" placeholder="Digita l'importo">
         </div>
-        <div class="col-md-4">
-            <button type="submit" class="btn btn-primary btn-lg btn-block"><i class="fas fa-rocket"></i> Crea spesa!</button>
-        </div>
+        <div class="col-md-2"><button type="submit" class="btn btn-outline-success"><i class="fas fa-check-circle"></i> Aggiungi spesa</button></div>
+        <div class="col-md-2"><a class="btn btn-outline-success" asp-action="Index"><i class="fas fa-times-circle"></i> Torna alle spese</a></div>
     </div>
     <div class="col-12"><p>&nbsp;</p></div>
     <div class="col-12"><span><b>ATTENZIONE:</b></span> 
