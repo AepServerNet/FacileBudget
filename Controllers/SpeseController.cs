@@ -57,17 +57,17 @@ namespace FacileBudget.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(int IdSpesa)
         {
-            if (ModelState.IsValid)
+            bool spesa = await spesaService.DeleteSpesaAsync(IdSpesa);
+            if (spesa == true)
             {
-                bool spesa = await spesaService.DeleteSpesaAsync(IdSpesa);
-                if (spesa == true)
-                {
-                    TempData["ConfirmationMessage"] = "Ok! La tua spesa è stata cancellata!";
-                    return RedirectToAction("Index", "Spese");
-                }
+                TempData["ConfirmationMessage"] = "Ok! La tua spesa è stata cancellata!";
+                return RedirectToAction("Index", "Spese");
             }
-            TempData["WarningMessage"] = "Attenzione! La tua spesa non è stata cancellata!";
-            return RedirectToAction("Index", "Spese");               
+            else
+            {
+                TempData["WarningMessage"] = "Attenzione! La tua spesa non è stata cancellata!";
+                return RedirectToAction("Index", "Spese");
+            }              
         }
 
         [HttpPost]

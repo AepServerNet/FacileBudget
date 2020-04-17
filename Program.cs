@@ -8,18 +8,17 @@ namespace FacileBudget
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
+        public static IHostBuilder CreateWebHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder
+                .ConfigureWebHostDefaults(webHostBuilder => {
+                    webHostBuilder
                         // Usare solo per il debug, lasciare commentato per il deploy su IIS
-                        //.UseUrls("http://localhost:81")
-                        //.UseKestrel()
-                        // Per eseguire il deploy lanciare il comando: dotnet publish --configuration Release
+                        //.UseStartup<Startup>();
+
+                        // Per eseguire il deploy su IIS, decommentare il codice sottostante e lanciare il comando: dotnet publish --configuration Release
                         .UseStartup<Startup>()
                         .UseSerilog((webHostBuilderContext, loggerConfiguration) => 
                         {

@@ -6,7 +6,7 @@ namespace FacileBudget.Models.Validators
 {
     public class SpeseCreateValidator : AbstractValidator<SpeseCreateInputModel>
     {
-         public SpeseCreateValidator()
+        public SpeseCreateValidator()
         {
             RuleFor(m => m.Descrizione)
                         .NotEmpty().WithMessage("La descrizione è obbligatoria")
