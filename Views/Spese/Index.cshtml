@@ -4,21 +4,30 @@
         <h1>@ViewData["Title"] <a class="btn btn-outline-success" asp-action="Create"><i class="fa fa-plus"></i> Crea nuova spesa</a></h1>
     </div>
     <div class="col-md-4 d-flex align-items-center">
-        <form asp-controller="Spese" asp-action="ExportDatiMese" method="post">
-            <input type="hidden" id="mese" name="mese" value="@DateTime.Now.ToString("MM")">
-            <input type="hidden" id="anno" name="anno" value="@DateTime.Now.ToString("yyyy")">
-            <button class="btn btn-outline-success" id="export-button">Esporta @DateTime.Now.ToString("MMMM")</button>
-        </form>&nbsp;
-        <form asp-controller="Spese" asp-action="ExportDatiMese" method="post">
-            <input type="hidden" id="mese" name="mese" value="@DateTime.Now.AddMonths(-1).ToString("MM")">
-            <input type="hidden" id="anno" name="anno" value="@DateTime.Now.AddMonths(-1).ToString("yyyy")">
-            <button class="btn btn-outline-success" id="export-button">Esporta @DateTime.Now.AddMonths(-1).ToString("MMMM")</button>
-        </form>&nbsp;
-        <form asp-controller="Spese" asp-action="ExportDatiMese" method="post">
-            <input type="hidden" id="mese" name="mese" value="@DateTime.Now.AddMonths(-2).ToString("MM")">
-            <input type="hidden" id="anno" name="anno" value="@DateTime.Now.AddMonths(-2).ToString("yyyy")">
-            <button class="btn btn-outline-success" id="export-button">Esporta @DateTime.Now.AddMonths(-2).ToString("MMMM")</button>
-        </form>
+        @if (Model.Spese.TotalMese != 0)
+        {
+            <form asp-controller="Spese" asp-action="ExportDatiMese" method="post">
+                <input type="hidden" id="mese" name="mese" value="@DateTime.Now.ToString("MM")">
+                <input type="hidden" id="anno" name="anno" value="@DateTime.Now.ToString("yyyy")">
+                <button class="btn btn-outline-success" id="export-button"><i class="fas fa-file-download"></i> Esporta @DateTime.Now.ToString("MMMM")</button>
+            </form>
+        }&nbsp;
+        @if (Model.Spese.Total1MesePrec != 0)
+        {
+            <form asp-controller="Spese" asp-action="ExportDatiMese" method="post">
+                <input type="hidden" id="mese" name="mese" value="@DateTime.Now.AddMonths(-1).ToString("MM")">
+                <input type="hidden" id="anno" name="anno" value="@DateTime.Now.AddMonths(-1).ToString("yyyy")">
+                <button class="btn btn-outline-success" id="export-button"><i class="fas fa-file-download"></i> Esporta @DateTime.Now.AddMonths(-1).ToString("MMMM")</button>
+            </form>
+        }&nbsp;
+        @if (Model.Spese.Total2MesePrec != 0)
+        {
+            <form asp-controller="Spese" asp-action="ExportDatiMese" method="post">
+                <input type="hidden" id="mese" name="mese" value="@DateTime.Now.AddMonths(-2).ToString("MM")">
+                <input type="hidden" id="anno" name="anno" value="@DateTime.Now.AddMonths(-2).ToString("yyyy")">
+                <button class="btn btn-outline-success" id="export-button"><i class="fas fa-file-download"></i> Esporta @DateTime.Now.AddMonths(-2).ToString("MMMM")</button>
+            </form>
+        }
     </div>
 </div>
 <p>&nbsp;</p>
@@ -47,7 +56,8 @@
     }
     <form asp-controller="Spese" asp-action="Delete" method="post">
         <input type="hidden" id="IdSpesa" name="IdSpesa" value="@spese.IdSpesa.ToString()">
-        <button class="btn btn-outline-success btn-sm" id="delete-button">Cancella</button>
+        <button class="btn btn-outline-success btn-sm" id="delete-button" onclick="return confirm('Sei sicuro di voler cancellare la spesa ?');">
+        <i class="fas fa-trash-alt"></i> Cancella</button>
     </form>
     <div class="col-md-1">&nbsp;</div>
 </div>

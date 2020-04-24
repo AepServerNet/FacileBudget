@@ -79,22 +79,25 @@ namespace FacileBudget.Controllers
             string SelMese = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(Convert.ToInt32(mese)).ToString();
             string FileName = "Report_spese_"+ SelMese + ".csv";
 
-            if(dsSpese.Tables[0].Rows.Count == 0)
-            {
-                string periodo = "" + SelMese + " " + anno + "";
-                string error = "Non ci sono spese da esportare in " + periodo + ".";
+            //if(dsSpese.Tables[0].Rows.Count == 0)
+            //{
+            //    string periodo = "" + SelMese + " " + anno + "";
+            //    string error = "Non ci sono spese da esportare in " + periodo + ".";
+            
+            //    sb.Append(error);
+            //    return File(Encoding.UTF8.GetBytes(sb.ToString()), "text/plain", "Spese.txt");
+            //}
 
-                sb.Append(error);
-                return File(Encoding.UTF8.GetBytes(sb.ToString()), "text/plain", "Spese.txt");
-            }
+            //if(dsSpese.Tables[0].Rows.Count != 0)
+            //{
+                sb.AppendLine("Descrizione" + ";" + "Importo");
 
-            sb.AppendLine("Descrizione" + ";" + "Importo");
-
-            foreach (DataRow dr in dsSpese.Tables[0].Rows)
-            {
-                sb.AppendLine(dr["Descrizione"].ToString() + ";" + dr["Importo"].ToString());
-            }
-            return File(Encoding.UTF8.GetBytes(sb.ToString()), "text/csv", FileName);
+                foreach (DataRow dr in dsSpese.Tables[0].Rows)
+                {
+                    sb.AppendLine(dr["Descrizione"].ToString() + ";" + dr["Importo"].ToString());
+                }
+                return File(Encoding.UTF8.GetBytes(sb.ToString()), "text/csv", FileName);
+            //}
         }
     }
 }
