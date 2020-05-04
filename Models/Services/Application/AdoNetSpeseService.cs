@@ -77,7 +77,6 @@ namespace FacileBudget.Models.Services.Application
         public async Task<DataSet> ExportCsvMese(string mese, string anno)
         {
             DataSet dataSet = await db.QueryAsync($@"SELECT IdSpesa, Descrizione, Importo, Valuta, Mese, Anno FROM Spese WHERE Mese LIKE {mese} AND Anno LIKE {anno};");
-            
             return dataSet;
         }
     }
