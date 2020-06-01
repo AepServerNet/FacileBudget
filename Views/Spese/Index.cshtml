@@ -33,7 +33,19 @@
 <p>&nbsp;</p>
 <div class="row">
     <div class="col-md"><h3>Periodo: @DateTime.Now.ToString("MMMM").ToUpper() @DateTime.Now.ToString("yyyy") 
-    - Totale: @Html.Raw(@Model.Spese.TotaleSpese.ToString()) &euro;</h3></div>
+    @{
+        decimal TotaleDecimal;
+        var TotaleDec = 0;
+
+        @if (@Model.Spese.TotaleSpese.ToString() == "")
+        {
+            TotaleDecimal = Math.Round(Convert.ToDecimal(TotaleDec), 2);
+        }
+        else
+        {
+            TotaleDecimal = Math.Round(Convert.ToDecimal(@Model.Spese.TotaleSpese.ToString()), 2);
+        }
+    } - Totale: @Html.Raw(@TotaleDec) &euro;</h3></div>
 </div>
 <p>&nbsp;</p>
 <div class="row">
